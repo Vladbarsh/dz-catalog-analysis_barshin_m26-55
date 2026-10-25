@@ -131,3 +131,35 @@ def decade_label(year):
             return "недавние"
         case _:
             return "старые"
+
+
+# Этап 3. Циклы.
+def print_non_comedy_titles(movies):
+    """Вывести названия фильмов, у которых нет жанра comedy."""
+    for movie in movies:
+        if "comedy" in movie["genres"]:
+            continue
+        print(movie["title"])
+
+
+def find_first_masterpiece(movies):
+    """Вывести и вернуть первый фильм с рейтингом выше 9.0 либо None."""
+    index = 0
+    while index < len(movies):
+        if movies[index]["rating"] > 9.0:
+            print(movies[index]["title"])
+            break
+        index += 1
+    else:
+        print("Шедевров не найдено")
+        return None
+    return movies[index]
+
+
+def count_long_movies(movies, threshold=120):
+    """Посчитать фильмы с длительностью строго больше порога."""
+    count = 0
+    for movie in movies:
+        if movie["duration_min"] > threshold:
+            count += 1
+    return count
